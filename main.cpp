@@ -29,10 +29,18 @@ int main(int argc, char** argv) {
     ofstream ans;
     ans.open("ans.txt");
     unordered_set<string> mSet;
+    unordered_set<string> mFilter;
     string temp;  
     int count = 0;
+    if(argc == 3){
+        fstream filter(argv[2], ios_base::in);
+        while (filter >> temp) {
+            mFilter.insert(temp);
+        }
+    }
+    
     while (mFile >> temp) {
-        if(mSet.find(temp) == mSet.end()){
+        if(mFilter.find(temp) == mFilter.end()){
             mSet.insert(temp);
         }
         count++;
